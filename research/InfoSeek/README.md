@@ -16,7 +16,7 @@
 - [x] Data Construction Codes
 - [x] SFT Training Code
 - [x] Technical Report
-- [ ] RL Training Code
+- [x] RL Training Code
 - [ ] InfoSeeker Model
 
 ## 🔆 Overview
@@ -134,6 +134,91 @@ We released [InfoSeek dataset](https://huggingface.co/datasets/Lk123/InfoSeek) o
       │── [claim] "was born in" ──> (D: Korogocho)
 ```
 </details>
+
+## 🔆 RL Training
+
+Our implementation is built upon [Search-R1](https://github.com/PeterGriffinJin/Search-R1).  
+We will release an updated version with **new verl support** for **Qwen3** training in the near future.
+
+---
+
+### RL Training Environment
+
+```bash
+conda create -n infoseek python=3.9
+conda activate infoseek
+
+# Install vLLM (choose a version that suits your environment)
+pip install vllm==0.6.3   # Compatible alternatives: 0.5.4, 0.4.2, or 0.3.1
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install FlashAttention 2
+pip install flash-attn --no-build-isolation
+
+# Logging
+pip install wandb
+````
+
+---
+
+### Retriever Environment (Optional)
+
+If you plan to use the retriever, we recommend installing PyTorch via conda to better support `faiss-gpu`.
+
+```bash
+conda create -n retriever python=3.10
+conda activate retriever
+
+# Install PyTorch + CUDA support
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.1 -c pytorch -c nvidia
+
+# Install retrieval-related libraries
+pip install transformers datasets pyserini
+
+# Install GPU-enabled FAISS for efficient RL rollouts
+conda install faiss-gpu=1.8.0 -c pytorch -c nvidia
+
+# API support for retrieval service
+pip install uvicorn fastapi
+```
+
+---
+
+### Quick Start
+
+We use **1 node with 8×H100 GPUs** for training by default.
+If you have **two nodes**, the retriever and refiner services can be deployed on the second node.
+
+#### (1) Download Training Data, Indexes, and Corpus
+
+* [https://huggingface.co/datasets/Lk123/m3_Flat_512](https://huggingface.co/datasets/Lk123/m3_Flat_512)
+* [https://huggingface.co/datasets/Lk123/wiki-25-512](https://huggingface.co/datasets/Lk123/wiki-25-512)
+* [https://huggingface.co/datasets/Lk123/InfoSeek](https://huggingface.co/datasets/Lk123/InfoSeek)
+
+#### (2) Launch the Retrieval Server (GPUs 4–7)
+
+```bash
+conda activate retriever
+cd InfoSeek/Retrieve
+bash retrieval_launch.sh
+```
+
+#### (3) Launch the Refiner Server (GPUs 4–7)
+
+```bash
+conda activate infoseek
+cd InfoSeek/Refine
+bash refiner_launch.sh
+```
+
+#### (4) Start RL Training (GPUs 0–3)
+
+```bash
+conda activate infoseek
+bash train_grpo_format.sh
+```
 
 
 ## 📊 Performance

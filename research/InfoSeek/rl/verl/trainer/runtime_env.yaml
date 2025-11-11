@@ -1,0 +1,27 @@
+working_dir: /share/project/kunluo/Projects/DeepResearch/DeepSearch
+excludes:
+  - "*.jsonl"
+  - "*.json"
+  - "*.log"
+  - "data/"
+  - "logs/"
+  - "verl_checkpoints/"
+  - "storeroom/"
+  - "data/"
+  - "wandb/"
+  - ".ipynb_checkpoints/"
+env_vars:
+  NCCL_IB_DISABLE: "0"
+  GLOO_SOCKET_IFNAME: eth0
+  NCCL_SOCKET_IFNAME: eth0
+  NCCL_IB_HCA: mlx5_100,mlx5_101,mlx5_102,mlx5_103,mlx5_104,mlx5_105,mlx5_106,mlx5_107
+  NCCL_IB_GID_INDEX: "7"
+  NCCL_DEBUG: "INFO"
+  RAY_gprc_server_rpc_deadline_s: "900000"
+  HTTP_PROXY: "http://127.0.0.1:7890"
+  HTTPS_PROXY: "http://127.0.0.1:7890"
+  
+  # --- 其他通用配置 ---; mlx5_201
+  TORCH_NCCL_AVOID_RECORD_STREAMS: "1"
+  VLLM_ATTENTION_BACKEND: "XFORMERS"
+  TOKENIZERS_PARALLELISM: "true"
