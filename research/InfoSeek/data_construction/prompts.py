@@ -159,6 +159,55 @@ Your output should contain two parts:
 ● Final Result: Then, wrap the final, updated, complete JSON search tree in \\tree_boxed{{}}. Please ensure the search tree can be parsed as JSON by Python. Simultaneously, wrap the selected hyperlink for expansion in \\href_boxed{{}}.
 
 
+Example:
+Scenario 1: First-hop expansion from the root node (Action 1)
+● Input:
+    ○ current_tree_structure: None
+    ○ entity_to_expand: "Russet sparrow"
+    ○ action_to_execute: "Action 1"
+    ○ target_node_page_content: "Wikipedia page for Russet sparrow... The English ornithologist John Gould described a specimen of the russet sparrow collected in the Himalayas at a meeting of the ..."
+● Your Output:
+Thinking Process:
+    ○ The action is Action 1, performing a depth-wise expansion on the root node "Russet sparrow" to create the first hop of the question. The goal is to build a simple initial question to facilitate future complex expansions.
+    ○ I read the page content and parsed the hyperlink <a href="John%20Gould">John Gould</a>. I have identified the target entity as "John Gould".
+    ○ Based on the original text, I constructed the claim "A was named by Jonh Gould (B)". This relationship is directly traceable and verifiable.
+Final Result:
+\\tree_boxed{{ {{"root":{{"id":"A","entity":"Russet sparrow","href":"Russet%20sparrow","question":"What is a species of bird that was named by Jonh Gould?","claims":[{{"target_id":"B","claim":"A was named by B"}}],"children":[{{"id":"B","entity":"John Gould","href":"John%20Gould","claims":[],"children":[]}}]}}}} }}
+\\href_boxed{{<a href="John%20Gould">John Gould</a>}}
+
+Scenario 2: Depth-wise expansion (Action 3)
+● Input:
+    ○ current_tree_structure: {{"root":{{"id":"A","entity":"Russet sparrow","href":"Russet%20sparrow","question":"What is a species of bird named by John Gould?","claims":[{{"target_id":"B","claim":"A was named by B"}}],"children":[{{"id":"B","entity":"John Gould","href":"John%20Gould","claims":[],"children":[]}}]}}}}
+    ○ entity_to_expand: "John Gould"
+    ○ action_to_execute: "Action 3"
+    ○ target_node_page_content: "Wikipedia page for John Gould... He and his wife <a href="Elizabeth%20Gould">Elizabeth Gould (artist)</a> collaborated on several ornithology books; she was a talented British artist..."
+● Your Output:
+Thinking Process:
+    ○ The action is Action 3, performing a depth-wise expansion on "John Gould". The goal is to find a new entity related to him to increase the number of hops in the question.
+    ○ I read the page content and parsed the hyperlink <a href="Elizabeth%20Gould">Elizabeth Gould (artist)</a>. I identified the target entity as "Elizabeth Gould". This is a specific person's name, and her relationship to John Gould (wife and collaborator) requires reading the context to determine, which meets the "niche" and "non-obvious connection" criteria, effectively countering the model's parametric knowledge.
+    ○ Based on the original text, I constructed the claim "C is the wife of B". This relationship is directly traceable and verifiable.
+    ○ I will create a new node "C" to represent "Elizabeth Gould" and add it as a child of "B" in the tree. I will also add a new claim pointing to "C" in "B"'s claims. I will then update the root question to reflect the added complexity.
+Final Result:
+\\tree_boxed{{ {{"root":{{"id":"A","entity":"Russet sparrow","href":"Russet%20sparrow","question":"What is a species of bird that was named by a person whose wife was a British artist?","claims":[{{"target_id":"B","claim":"A was named by B"}}],"children":[{{"id":"B","entity":"John Gould","href":"John%20Gould","claims":[{{"target_id":"C","claim":"C is the wife of B"}}],"children":[{{"id":"C","entity":"Elizabeth Gould","href":"Elizabeth%20Gould","claims":[],"children":[]}}]}}]}}}} }}
+\\href_boxed{{<a href="Elizabeth%20Gould">Elizabeth Gould (artist)</a>}}
+
+Scenario 3: Breadth-wise expansion (Action 2)
+● Input:
+    ○ current_tree_structure: {{"root":{{"id":"A","entity":"Russet sparrow","href":"Russet%20sparrow","question":"What is a species of bird that was named by a person whose wife was a British artist?","claims":[{{"target_id":"B","claim":"A was named by B"}}],"children":[{{"id":"B","entity":"John Gould","href":"John%20Gould","claims":[{{"target_id":"C","claim":"C is the wife of B"}}],"children":[{{"id":"C","entity":"Elizabeth Gould","href":"Elizabeth%20Gould","claims":[],"children":[]}}]}}]}}}}
+    ○ entity_to_expand: "Russet sparrow"
+    ○ action_to_execute: "Action 2"
+    ○ target_node_page_content: "Wikipedia page for Russet sparrow... Passer rutilans, a species of <a href="Old%20World%20sparrow">Old World sparrow</a>... It has three recognised subspecies..."
+● Your Output:
+Thinking Process:
+    ○ The action is Action 2, performing a breadth-wise expansion on the root node "Russet sparrow". The goal is to add a constraining condition to ensure the uniqueness of the final answer and make it harder to search.
+    ○ I read the page content. I found the fact: "The body length of this kind of bird is between 5.5 and 5.9 inches". This is a good constraint because it's a verifiable fact but does not leak any information about "John Gould" or "Elizabeth Gould", and it can make the problem harder to search, making the problem better for deep research.
+    ○ I will rephrase this information into the claim "its body length is generally no more than 6 inches".
+    ○ I will create a new virtual node "D" and add it as a new child of "A". At the same time, I will add a new claim pointing to "D" in "A"'s claims list. Finally, I will update the root question to include this new constraint.
+Final Result:
+\\tree_boxed{{ {{"root":{{"id":"A","entity":"Russet sparrow","href":"Russet%20sparrow","question":"What is a species of bird that was named by a person whose wife was a British artist? And the bird is generally no more than 6 inches.","claims":[{{"target_id":"B","claim":"A was named by B"}},{{"target_id":"D","claim":"A is generally no more than 6 inches"}}],"children":[{{"id":"B","entity":"John Gould","href":"John%20Gould","claims":[{{"target_id":"C","claim":"C is the wife of B"}}],"children":[{{"id":"C","entity":"Elizabeth Gould","href":"Elizabeth%20Gould","claims":[],"children":[]}}]}},{{"id":"D","entity":"None","href":"Russet%20sparrow","claims":[],"children":[]}}]}}}} }}
+\\href_boxed{{<a href="Russet%20sparrow">Russet sparrow</a>}}
+
+
 Now, please follow the instructions to perform the task.
 Input:
 ● Current_Search_Tree: {Current_Search_Tree}
