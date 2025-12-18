@@ -58,8 +58,8 @@ Our team continuously explores various aspects of deep research problems, from f
 
 ### Model Development
 - [x] SFT Training Code
-- [ ] RL Training Code
-- [ ] InfoSeeker Model Release
+- [x] RL Training Code
+- [x] InfoSeeker Model Release
 - [ ] Model Evaluation Framework
 
 ### Applications
