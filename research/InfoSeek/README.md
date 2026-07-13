@@ -4,10 +4,10 @@
 <h1 align="center">Open Data Synthesis For Deep Research</h1>
 
 <p align="center">
-    <a href="https://arxiv.org/abs/2509.00375"><img alt="Build" src="http://img.shields.io/badge/arXiv-InfoSeek-B31B1B.svg?logo=arxiv"></a>
+    <a href="https://arxiv.org/abs/2509.00375"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-InfoSeek-B31B1B.svg?logo=arxiv"></a>
     <a href="https://github.com/VectorSpaceLab/InfoSeek"><img alt="Build" src="https://img.shields.io/badge/Github-InfoSeek-blue?logo=github"></a>
     <a href="https://huggingface.co/datasets/Lk123/InfoSeek"><img alt="Build" src="https://img.shields.io/badge/🤗 Datasets-InfoSeek-yellow"></a>
-    <a href="https://opensource.org/license/apache-2-0"><img alt="Build" src="https://img.shields.io/badge/LICENSE-Apache2.0-green.svg">
+    <a href="https://opensource.org/license/apache-2-0"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/LICENSE-Apache2.0-green.svg"></a>
 </p>
 
 ## 🔎 Roadmap
@@ -20,11 +20,15 @@
 - [ ] InfoSeeker Model
 
 ## 🔆 Overview
-We propose **InfoSeek**, a scalable data synthesis framework for constructing structurally complex Deep Research tasks. InfoSeek designs a dual-agent system to recursively build a *Research Tree* by mining entities and relations from large-scale text, and blurring itermediate vertices to ensure they form valid sub-problems. The agent then transform these trees into natural language questions whose solutions require traversing the entire hierarchy. Using InfoSeek pipeline, we construct a high-quality, complexity-controllable, and intrinsically verifiable dataset.
+We propose **InfoSeek**, a scalable data synthesis framework for constructing structurally complex Deep Research tasks. InfoSeek designs a dual-agent system to recursively build a *Research Tree* by mining entities and relations from large-scale text, and blurring intermediate vertices to ensure they form valid sub-problems. The agent then transforms these trees into natural-language questions whose solutions require traversing the entire hierarchy. Using the InfoSeek pipeline, we construct a high-quality, complexity-controllable, and intrinsically verifiable dataset.
 
 ## 📋 InfoSeek Data
 
 We released [InfoSeek dataset](https://huggingface.co/datasets/Lk123/InfoSeek) on 🤗
+
+### InfoSeek Eval
+
+The public [InfoSeek Eval](https://huggingface.co/datasets/Lk123/InfoSeek) split contains 300 training-isolated Deep Search QA pairs. Load the `infoseek eval` configuration with the `test` split and keep it out of all training mixtures.
 
 ### Example 1:
 **Question:** What is a species of bird that was named by a person employed under his father between 1818 and 1824, whose wife was a British artist, and which has three subspecies and body length is generally no more than 6 inches?
@@ -231,7 +235,7 @@ Our 3B model shows competitive results on [BrowseComp-Plus](https://github.com/t
 <img src="./assets/browsecomp_plus.png" width="800">
 
 ## 📄 License
-The code and data accompanying this work are released under the [Apache License, Version 2.0](./LICENSE). This permits use, modification, and distribution for research and commercial purposes, provided that proper attribution is given and the terms of the license are followed.
+The code and data accompanying this work are released under the [Apache License, Version 2.0](../../LICENSE). This permits use, modification, and distribution for research and commercial purposes, provided that proper attribution is given and the terms of the license are followed.
 
 ## ❤️ Citing Us
 If you find this repository or our work useful, please consider giving a star ⭐ and or citing our work, which would be greatly appreciated:

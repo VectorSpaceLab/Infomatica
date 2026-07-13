@@ -2,13 +2,13 @@
 <div align="center"> 
 <img src="assets/image.png" width="120px">
 </div>
-<h1 align="center"> 🔍📚 Informatica: Open and Scalable Foundations for Deep Research System</a></h1>
+<h1 align="center">🔍📚 Informatica: Open and Scalable Foundations for Deep Research Systems</h1>
 
 <div align="center">
-<a href="https://huggingface.co/collections/TommyChien/informatica-68ccc0b35674571aa007d961"><img alt="Build" src="https://img.shields.io/badge/🤗 Models-Infomatica-blue"></a>
-<a href="https://huggingface.co/datasets/Lk123/InfoSeek"><img alt="Build" src="https://img.shields.io/badge/🤗 Datasets-Infomatica-yellow"></a>
-<a href="https://github.com/"><img alt="License" src="https://img.shields.io/badge/Apache-2.0-green"></a>
-<a><img alt="Static Badge" src="https://img.shields.io/badge/made_with-Python-blue"></a>
+<a href="https://huggingface.co/collections/TommyChien/informatica-68ccc0b35674571aa007d961"><img alt="Models" src="https://img.shields.io/badge/🤗_Models-Infomatica-blue"></a>
+<a href="https://huggingface.co/datasets/Lk123/InfoSeek"><img alt="Datasets" src="https://img.shields.io/badge/🤗_Datasets-InfoSeek-yellow"></a>
+<a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache--2.0-green"></a>
+<img alt="Made with Python" src="https://img.shields.io/badge/Made_with-Python-blue">
 </div>
     
 <h4 align="center">
@@ -16,9 +16,10 @@
 <p>
 <a href="#-overview">Overview</a> |
 <a href="#-news">News</a> |
-<a href="#️-roadmap">Roadmap</a> |
+<a href="#-roadmap">Roadmap</a> |
 <a href="#-demo">Demo</a> |
-<a href="#-misc">Misc</a>
+<a href="#-misc">Misc</a> |
+<a href="#-citation">Citation</a>
 </p>
 </h4>
 
@@ -37,6 +38,10 @@ Our team continuously explores various aspects of deep research problems, from f
 
 
 ## 📰 News
+[2026/07] 🧪 We have released [InfoSeek Eval](https://huggingface.co/datasets/Lk123/InfoSeek), a 300-example training-isolated test split for deep search evaluation.
+
+[2026/07] 🎉 Our paper [InfoFlow: Reinforcing Agentic Search Via Reward Density Optimization](https://aclanthology.org/2026.acl-long.467/) has been published at **ACL 2026**.
+
 [2025/09/19]🎉 Our paper [InForage](https://arxiv.org/abs/2505.09316) has been accepted by NeurIPS 2025 as a **Spotlight** paper! Codes is available [here](https://github.com/VectorSpaceLab/Infomatica/tree/main/research/InForage).
 
 
@@ -78,7 +83,7 @@ We are building a demo page to showcase different agentic search methods and all
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=VectorSpaceLab/Infomatica&type=Date)](https://www.star-history.com/#Alibaba-NLP/DeepResearch&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=VectorSpaceLab/Infomatica&type=Date)](https://www.star-history.com/#VectorSpaceLab/Infomatica&Date)
 
 </div>
 
@@ -101,5 +106,34 @@ InForage:
       author={Hongjin Qian and Zheng Liu},
       year={2025},
       url={https://arxiv.org/abs/2505.09316}, 
+}
+```
+
+InfoFlow (ACL 2026):
+```
+@inproceedings{luo-etal-2026-reinforcing,
+    title = "Reinforcing Agentic Search Via Reward Density Optimization",
+    author = "Luo, Kun  and
+      Qian, Hongjin  and
+      Liu, Zheng  and
+      Xia, Ziyi  and
+      Xiao, Shitao  and
+      Cao, Zhao  and
+      Bao, Siqi  and
+      Zhao, Jun  and
+      Liu, Kang",
+    editor = "Liakata, Maria  and
+      Moreira, Viviane P.  and
+      Zhang, Jiajun  and
+      Jurgens, David",
+    booktitle = "Proceedings of the 64th Annual Meeting of the {A}ssociation for {C}omputational {L}inguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2026",
+    address = "San Diego, California, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.acl-long.467/",
+    doi = "10.18653/v1/2026.acl-long.467",
+    pages = "10261--10283",
+    ISBN = "979-8-89176-390-6"
 }
 ```
