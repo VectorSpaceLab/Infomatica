@@ -42,6 +42,10 @@ Our team continuously explores various aspects of deep research problems, from f
 
 [2026/07] 🎉 Our paper [InfoFlow: Reinforcing Agentic Search Via Reward Density Optimization](https://aclanthology.org/2026.acl-long.467/) has been published at **ACL 2026**.
 
+[2026/04] 🔬 We released [AutoResearchBench](https://github.com/CherYou/AutoResearchBench), a challenging benchmark for scientific deep research and literature discovery. For many frontier models, it can be a tougher test than BrowseComp—ideal for stress-testing agentic research systems. [Code](https://github.com/CherYou/AutoResearchBench) · [Dataset](https://huggingface.co/datasets/Lk123/AutoResearchBench) · [Paper](https://arxiv.org/abs/2604.25256) 🧪
+
+[2026/01] 🎉 Our paper [Open Data Synthesis For Deep Research](https://arxiv.org/abs/2509.00375), introducing InfoSeek, has been accepted to **ICLR 2026**!
+
 [2025/09/19]🎉 Our paper [InForage](https://arxiv.org/abs/2505.09316) has been accepted by NeurIPS 2025 as a **Spotlight** paper! Codes is available [here](https://github.com/VectorSpaceLab/Infomatica/tree/main/research/InForage).
 
 
@@ -88,6 +92,8 @@ We are building a demo page to showcase different agentic search methods and all
 </div>
 
 ## 📄 Citation
+
+AutoResearchBench: [Lei Xiong et al., 2026](https://arxiv.org/abs/2604.25256).
 
 InfoSeek:
 ```
